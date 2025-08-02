@@ -267,22 +267,34 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 120px;
+            padding: clamp(100px, 15vh, 120px) 0 clamp(50px, 8vh, 80px);
             position: relative;
         }
         
         .hero-content {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: clamp(30px, 6vw, 80px);
+            grid-template-columns: 1fr;
+            gap: clamp(40px, 6vw, 60px);
             align-items: center;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        @media (max-width: 1200px) {
+        @media (min-width: 1000px) {
             .hero-content {
-                grid-template-columns: 1fr;
-                gap: clamp(40px, 5vw, 60px);
-                text-align: center;
+                grid-template-columns: 1.3fr 0.7fr;
+                gap: clamp(50px, 8vw, 80px);
+                text-align: left;
+            }
+            
+            .hero-text {
+                padding-right: 20px;
+            }
+            
+            .profile-section {
+                display: flex;
+                justify-content: center;
             }
         }
         
@@ -2389,6 +2401,15 @@
             }
         }
         
+        function formatMessage(text) {
+            // Convert markdown-like formatting to HTML
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>')
+                .replace(/•/g, '•');
+        }
+        
         function addMessage(content, isUser = false) {
             const message = document.createElement('div');
             message.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
@@ -2399,8 +2420,10 @@
                 minute: '2-digit' 
             });
             
+            const formattedContent = isUser ? content : formatMessage(content);
+            
             message.innerHTML = `
-                <div class="message-content">${content}</div>
+                <div class="message-content">${formattedContent}</div>
                 <div class="message-time">${time}</div>
             `;
             
@@ -2423,17 +2446,25 @@
             return typingDiv;
         }
         
-        // Fallback responses if Gemini fails
+        // Enhanced fallback responses
         const fallbackResponses = {
-            habilidades: "Cleber tem experiência em: 🎯 Controle de Estoque, 👥 Atendimento ao Cliente, 💰 Vendas e Negociação, 🚀 Marketing Digital, ⚡ Suporte Técnico e 🏖️ Conhecimento Local de Búzios. Tem 15+ anos de experiência!",
-            contato: "Você pode falar com o Cleber: 📱 WhatsApp: (21) 99494-5474 | 📧 Email: cleberluiz.profissional@gmail.com | 🌐 Portfólio: www.conexaobuzios.com/eu | 📷 Instagram: @conexao.buzios",
-            experiencia: "Experiência do Cleber: 🔸 2023-atual: Empreendedor Digital (Conexão Búzios) 🔸 2025: Especialista em Estoque (Arcturo) 🔸 2024-2025: Técnico Fibra Óptica 🔸 2020-2021: Consultor Marketing Digital 🔸 2018-2019: Gerente Geral",
-            disponibilidade: "Sim! Cleber está disponível para trabalhar. Ele mora em Búzios-RJ, tem veículo próprio e está buscando novas oportunidades profissionais. Entre em contato pelo WhatsApp (21) 99494-5474!",
-            estoque: "Cleber tem excelente experiência em controle de estoque! Trabalhou na Arcturo em 2025, onde foi responsável pela organização, controle e otimização de processos. Tem atenção aos detalhes e foco na eficiência.",
-            vendas: "Sim! Cleber tem experiência sólida em vendas e negociação. Sabe prospectar, negociar e fechar vendas. Está comprometido em ajudar empresas a atingir suas metas de vendas.",
-            digital: "Cleber conhece bem marketing digital! Tem seu próprio negócio (Conexão Búzios) criando sites, identidade visual e campanhas. Já trabalhou com Google Ads, Facebook Ads e WordPress.",
-            buzios: "Cleber mora em Búzios-RJ e conhece muito bem a região! Tem network local sólido e entende o turismo da área. Isso é uma vantagem para empresas locais.",
-            saudacao: "Olá! 👋 Sou o assistente do Cleber Mantuano. Ele é um profissional experiente de Búzios-RJ com 15+ anos de experiência. Posso te contar sobre suas habilidades, experiência ou como entrar em contato. O que gostaria de saber?"
+            habilidades: "🎯 **Principais habilidades do Cleber:**\n\n• **Controle de Estoque** - Organização e logística\n• **Atendimento ao Cliente** - Vendas e relacionamento\n• **Marketing Digital** - Sites, campanhas, redes sociais\n• **Suporte Técnico** - Fibra óptica e equipamentos\n• **Conhecimento Local** - Expert em Búzios-RJ\n\n✨ **15+ anos de experiência comprovada!**",
+            
+            contato: "📞 **Como falar com o Cleber:**\n\n📱 **WhatsApp:** (21) 99494-5474 *(resposta rápida)*\n📧 **Email:** cleberluiz.profissional@gmail.com\n🌐 **Portfólio:** www.conexaobuzios.com/eu\n📷 **Instagram:** @conexao.buzios\n\n💬 **Recomendo o WhatsApp para contato mais rápido!**",
+            
+            experiencia: "💼 **Experiência profissional do Cleber:**\n\n🔸 **2023-atual:** Empreendedor Digital (Conexão Búzios)\n🔸 **2025:** Especialista em Estoque (Arcturo)\n🔸 **2024-2025:** Técnico Fibra Óptica\n🔸 **2020-2021:** Consultor Marketing Digital (AKT)\n🔸 **2018-2019:** Gerente Geral (Bar 24h)\n\n🚀 **Trajetória sólida e diversificada!**",
+            
+            disponibilidade: "✅ **Sim, Cleber está disponível!**\n\n🏖️ **Localização:** Búzios-RJ\n🚗 **Veículo próprio:** Sim\n💼 **Status:** Buscando novas oportunidades\n⏰ **Disponibilidade:** Imediata\n\n📱 **Entre em contato:** (21) 99494-5474",
+            
+            estoque: "📦 **Experiência em Controle de Estoque:**\n\n✅ Trabalhou na **Arcturo** (Búzios) em 2025\n✅ Responsável por organização e controle\n✅ Otimização de processos\n✅ Redução de perdas\n✅ Atenção aos detalhes\n\n🎯 **Resultado:** Eficiência máxima comprovada!",
+            
+            vendas: "💰 **Experiência em Vendas:**\n\n🎯 **Prospecção** de novos clientes\n🤝 **Negociação** e fechamento\n📈 **Crescimento** de vendas\n🏆 **Comprometimento** com metas\n👥 **Relacionamento** duradouro\n\n💪 **Focado em resultados para a empresa!**",
+            
+            digital: "🚀 **Marketing Digital:**\n\n🌐 **Criação de sites** profissionais\n📱 **Redes sociais** e campanhas\n💡 **Google Ads** e **Facebook Ads**\n🎨 **Identidade visual** marcante\n📊 **WordPress** e análises\n\n✨ **Negócio próprio:** Conexão Búzios",
+            
+            buzios: "🏖️ **Vantagem Local - Búzios:**\n\n🗺️ **Conhece toda a região**\n🤝 **Network local sólido**\n🏨 **Entende o turismo**\n📍 **Nascido e criado** em Búzios\n🚗 **Mobilidade total** (veículo próprio)\n\n🎯 **Diferencial competitivo para empresas locais!**",
+            
+            saudacao: "👋 **Olá! Sou o assistente virtual do Cleber!**\n\n🎯 **Profissional qualificado** de Búzios-RJ\n⭐ **15+ anos de experiência**\n💼 **Múltiplas competências**\n✅ **Disponível para trabalhar**\n\n❓ **O que gostaria de saber sobre ele?**"
         };
         
         function getSmartResponse(userMessage) {
@@ -2469,43 +2500,76 @@ WhatsApp: (21) 99494-5474 📱`;
         }
         
         async function sendToGemini(userMessage) {
+            console.log('Enviando para Gemini:', userMessage);
+            
+            // Use smart fallback as primary (since Gemini API may have CORS issues)
+            const smartResponse = getSmartResponse(userMessage);
+            
+            // Try Gemini API in background (optional enhancement)
             try {
-                // First try Gemini API
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
+                
+                const requestBody = {
+                    contents: [{
+                        parts: [{
+                            text: `Contexto: Você é assistente do Cleber Mantuano, profissional de Búzios-RJ com 15+ anos experiência.
+                            
+Habilidades: Controle Estoque, Atendimento Cliente, Vendas, Marketing Digital, Suporte Técnico, Conhecimento Búzios.
+
+Experiência: Empreendedor Digital (atual), Especialista Estoque (Arcturo), Técnico Fibra Óptica, Consultor Marketing, Gerente Geral.
+
+Contatos: WhatsApp (21) 99494-5474, Email cleberluiz.profissional@gmail.com, Site www.conexaobuzios.com/eu
+
+Pergunta: "${userMessage}"
+
+Responda em português, máximo 3 linhas, amigável e profissional, focando no Cleber.`
+                        }]
+                    }],
+                    generationConfig: {
+                        temperature: 0.8,
+                        maxOutputTokens: 150,
+                        topP: 0.9
+                    },
+                    safetySettings: [
+                        {
+                            category: "HARM_CATEGORY_HARASSMENT",
+                            threshold: "BLOCK_MEDIUM_AND_ABOVE"
+                        }
+                    ]
+                };
+
+                const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [{
-                                text: `${cleberContext}\n\nUsuário perguntou: "${userMessage}"\n\nResponda de forma amigável, útil e profissional em português. Mantenha foco no Cleber e suas qualificações. Seja conversacional mas informativo.`
-                            }]
-                        }],
-                        generationConfig: {
-                            temperature: 0.7,
-                            maxOutputTokens: 200
-                        }
-                    })
+                    body: JSON.stringify(requestBody)
                 });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+
+                console.log('Status da API:', response.status);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Resposta da API:', data);
+                    
+                    if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0]) {
+                        const geminiResponse = data.candidates[0].content.parts[0].text.trim();
+                        if (geminiResponse && geminiResponse.length > 10) {
+                            console.log('Usando resposta Gemini');
+                            return geminiResponse;
+                        }
+                    }
                 }
                 
-                const data = await response.json();
-                
-                if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0]) {
-                    return data.candidates[0].content.parts[0].text;
-                } else {
-                    throw new Error('Resposta inválida da API');
-                }
+                throw new Error('Resposta Gemini inválida');
                 
             } catch (error) {
-                console.error('Erro na API Gemini, usando resposta inteligente:', error);
-                // Use smart fallback response
-                return getSmartResponse(userMessage);
+                console.log('API Gemini falhou, usando fallback:', error.message);
             }
+            
+            // Always return smart fallback
+            console.log('Usando resposta inteligente fallback');
+            return smartResponse;
         }
         
         async function sendMessage() {
