@@ -271,55 +271,339 @@
             position: relative;
         }
         
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: clamp(40px, 6vw, 60px);
+        /* New Hero Layout */
+        .professional-header {
+            display: flex;
             align-items: center;
+            gap: clamp(20px, 4vw, 30px);
+            margin-bottom: clamp(40px, 6vw, 60px);
+            padding: clamp(20px, 4vw, 30px);
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(191, 0, 255, 0.05));
+            border-radius: 20px;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+        }
+        
+        .profile-image-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        .profile-main-image {
+            width: clamp(80px, 15vw, 120px);
+            height: clamp(80px, 15vw, 120px);
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(3rem, 8vw, 5rem);
+            animation: avatarGlow 3s ease-in-out infinite alternate;
+        }
+        
+        .status-indicator {
+            position: absolute;
+            bottom: -5px;
+            right: -10px;
+            background: var(--neon-green);
+            color: black;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 4px 15px rgba(57, 255, 20, 0.4);
+        }
+        
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: black;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .professional-info {
+            flex: 1;
+        }
+        
+        .professional-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--gold), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: clamp(8px, 2vw, 12px);
+            line-height: 1.1;
+        }
+        
+        .professional-role {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: var(--neon-purple);
+            font-weight: 700;
+            margin-bottom: clamp(10px, 2vw, 15px);
+            text-shadow: 0 0 10px var(--neon-purple);
+        }
+        
+        .location-info {
+            display: flex;
+            align-items: center;
+            gap: clamp(8px, 2vw, 12px);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-weight: 600;
+        }
+        
+        .separator {
+            color: var(--neon-blue);
+        }
+        
+        .vehicle-info {
+            color: var(--neon-green);
+        }
+        
+        /* Hero Main Content */
+        .hero-main-content {
+            margin-bottom: clamp(40px, 6vw, 60px);
+        }
+        
+        .hero-intro {
             text-align: center;
-            max-width: 1200px;
+            margin-bottom: clamp(30px, 5vw, 40px);
+        }
+        
+        .hero-tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: white;
+            margin-bottom: clamp(15px, 3vw, 20px);
+            line-height: 1.2;
+        }
+        
+        .hero-description {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            max-width: 800px;
             margin: 0 auto;
         }
         
-        @media (min-width: 1000px) {
-            .hero-content {
-                grid-template-columns: 1.3fr 0.7fr;
-                gap: clamp(50px, 8vw, 80px);
-                text-align: left;
-            }
-            
-            .hero-text {
-                padding-right: 20px;
-            }
-            
-            .profile-section {
-                display: flex;
-                justify-content: center;
-            }
+        /* Hero Stats */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(100px, 20vw, 150px), 1fr));
+            gap: clamp(15px, 3vw, 25px);
+            margin-bottom: clamp(40px, 6vw, 60px);
         }
         
-        .hero-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 6vw, 4.5rem);
+        .stat-box {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(191, 0, 255, 0.1));
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 15px;
+            padding: clamp(15px, 3vw, 20px);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+        }
+        
+        .stat-number {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             font-weight: 900;
-            line-height: clamp(1.1, 3vw, 1.2);
-            margin-bottom: clamp(20px, 4vw, 30px);
-            background: linear-gradient(45deg, var(--gold), var(--neon-blue), var(--neon-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: heroTextReveal 2s ease-out;
-            position: relative;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            margin-bottom: 5px;
         }
         
-        .hero-text h1::after {
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        /* Skills Preview */
+        .skills-preview {
+            margin-bottom: clamp(40px, 6vw, 60px);
+        }
+        
+        .skills-preview-title {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            color: var(--gold);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: clamp(20px, 4vw, 30px);
+            text-shadow: 0 0 15px var(--gold);
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(10px, 2vw, 15px);
+            justify-content: center;
+        }
+        
+        .skill-tag {
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(0, 240, 255, 0.2));
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 25px;
+            padding: clamp(8px, 2vw, 12px) clamp(15px, 3vw, 20px);
+            color: white;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(45deg, var(--gold), var(--neon-blue));
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Hero Actions */
+        .hero-actions {
+            margin-bottom: clamp(30px, 5vw, 40px);
+        }
+        
+        .primary-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 40vw, 300px), 1fr));
+            gap: clamp(15px, 3vw, 20px);
+            margin-bottom: clamp(20px, 4vw, 30px);
+        }
+        
+        .action-btn {
+            background: linear-gradient(135deg, 
+                rgba(0, 240, 255, 0.2) 0%,
+                rgba(191, 0, 255, 0.2) 100%);
+            border: 2px solid;
+            border-image: linear-gradient(45deg, var(--neon-blue), var(--neon-purple)) 1;
+            border-radius: 20px;
+            padding: clamp(15px, 3vw, 20px);
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-btn::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: textShine 3s ease-in-out infinite;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .action-btn:hover::before {
+            left: 100%;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.4);
+        }
+        
+        .action-btn.primary {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+        }
+        
+        .action-btn.secondary {
+            background: linear-gradient(135deg, var(--gold), var(--neon-pink));
+            color: black;
+        }
+        
+        .btn-icon {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+        
+        .btn-text {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 800;
+        }
+        
+        .btn-subtitle {
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            opacity: 0.8;
+            font-weight: 500;
+        }
+        
+        .contact-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(15px, 3vw, 25px);
+            justify-content: center;
+        }
+        
+        .contact-link {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            background: rgba(0, 240, 255, 0.1);
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+        
+        /* Availability Notice */
+        .availability-notice {
+            text-align: center;
+        }
+        
+        .notice-content {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, rgba(57, 255, 20, 0.2), rgba(0, 240, 255, 0.1));
+            border: 1px solid rgba(57, 255, 20, 0.4);
+            border-radius: 30px;
+            padding: clamp(12px, 3vw, 15px) clamp(20px, 4vw, 25px);
+            animation: noticeGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes noticeGlow {
+            0%, 100% { 
+                box-shadow: 0 5px 20px rgba(57, 255, 20, 0.3);
+            }
+            50% { 
+                box-shadow: 0 8px 30px rgba(57, 255, 20, 0.6);
+            }
+        }
+        
+        .notice-icon {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+        }
+        
+        .notice-text {
+            color: white;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-weight: 700;
         }
         
         @keyframes textShine {
@@ -993,117 +1277,142 @@
             }
         }
 
-        /* AI Chatbot Styles */
-        .ai-chat-container {
+        /* AI Widget - Always Visible */
+        .ai-widget {
             position: fixed;
-            bottom: 120px;
-            right: 30px;
-            width: clamp(300px, 90vw, 400px);
-            max-height: clamp(400px, 70vh, 600px);
+            bottom: 20px;
+            right: 20px;
+            width: clamp(300px, 25vw, 380px);
+            max-height: clamp(400px, 60vh, 500px);
             background: linear-gradient(135deg, 
                 rgba(0, 0, 0, 0.95) 0%,
                 rgba(26, 0, 51, 0.95) 50%,
                 rgba(18, 4, 88, 0.95) 100%);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
             border-radius: 20px;
             border: 2px solid;
             border-image: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-pink)) 1;
             box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.5),
-                0 0 50px rgba(0, 240, 255, 0.3);
-            display: none;
+                0 25px 50px rgba(0, 0, 0, 0.6),
+                0 0 50px rgba(0, 240, 255, 0.4);
+            display: flex;
             flex-direction: column;
             z-index: 1001;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: widgetSlideIn 1s ease-out 2s both;
         }
         
-        .ai-chat-container.active {
-            display: flex;
-            transform: translateY(0);
-            opacity: 1;
+        @keyframes widgetSlideIn {
+            0% { 
+                transform: translateX(100%) scale(0.8);
+                opacity: 0;
+            }
+            100% { 
+                transform: translateX(0) scale(1);
+                opacity: 1;
+            }
         }
         
-        .chat-header {
+        .ai-widget-header {
             display: flex;
             align-items: center;
             padding: 15px 20px;
             border-bottom: 1px solid rgba(0, 240, 255, 0.3);
-            background: linear-gradient(45deg, rgba(0, 240, 255, 0.1), rgba(191, 0, 255, 0.1));
+            background: linear-gradient(45deg, rgba(0, 240, 255, 0.15), rgba(191, 0, 255, 0.15));
+            border-radius: 20px 20px 0 0;
         }
         
-        .chat-avatar {
-            width: 40px;
-            height: 40px;
+        .ai-avatar {
+            width: 35px;
+            height: 35px;
             background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            margin-right: 12px;
+            font-size: 1.1rem;
+            margin-right: 10px;
             animation: avatarGlow 2s ease-in-out infinite alternate;
         }
         
-        .chat-info {
+        .ai-info {
             flex: 1;
         }
         
-        .chat-name {
+        .ai-name {
             color: white;
             font-weight: 700;
             font-size: 0.9rem;
             margin-bottom: 2px;
         }
         
-        .chat-status {
+        .ai-status {
             color: var(--neon-green);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 500;
         }
         
-        .chat-close {
+        .ai-minimize {
             background: none;
             border: none;
             color: rgba(255, 255, 255, 0.7);
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             cursor: pointer;
             padding: 5px;
-            border-radius: 50%;
+            border-radius: 3px;
             transition: all 0.3s ease;
+            line-height: 1;
         }
         
-        .chat-close:hover {
+        .ai-minimize:hover {
             background: rgba(255, 255, 255, 0.1);
             color: white;
         }
         
-        .chat-messages {
+        .ai-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-height: clamp(350px, 55vh, 450px);
+        }
+        
+        .ai-welcome {
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(191, 0, 255, 0.05));
+        }
+        
+        .welcome-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        .ai-messages {
             flex: 1;
             padding: 15px;
             overflow-y: auto;
-            max-height: clamp(250px, 40vh, 350px);
+            min-height: 150px;
             scrollbar-width: thin;
             scrollbar-color: var(--neon-blue) transparent;
         }
         
-        .chat-messages::-webkit-scrollbar {
-            width: 6px;
+        .ai-messages::-webkit-scrollbar {
+            width: 5px;
         }
         
-        .chat-messages::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
+        .ai-messages::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 3px;
         }
         
-        .chat-messages::-webkit-scrollbar-thumb {
+        .ai-messages::-webkit-scrollbar-thumb {
             background: var(--neon-blue);
             border-radius: 3px;
         }
         
-        .message {
-            margin-bottom: 15px;
+        .ai-message {
+            margin-bottom: 12px;
             animation: messageSlideIn 0.3s ease-out;
         }
         
@@ -1112,76 +1421,65 @@
             100% { opacity: 1; transform: translateY(0); }
         }
         
-        .message-content {
-            padding: 12px 16px;
-            border-radius: 15px;
+        .ai-message-content {
+            padding: 10px 14px;
+            border-radius: 12px;
             line-height: 1.4;
-            font-size: clamp(0.85rem, 2.5vw, 0.9rem);
+            font-size: 0.85rem;
             word-wrap: break-word;
         }
         
-        .bot-message .message-content {
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(191, 0, 255, 0.2));
-            color: white;
-            border-bottom-left-radius: 5px;
-            margin-right: 20px;
-        }
-        
-        .user-message .message-content {
+        .ai-message.user .ai-message-content {
             background: linear-gradient(135deg, var(--neon-green), var(--neon-blue));
             color: black;
-            margin-left: 20px;
-            border-bottom-right-radius: 5px;
+            margin-left: 15px;
+            border-bottom-right-radius: 3px;
             text-align: right;
         }
         
-        .message-time {
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 5px;
-            text-align: right;
+        .ai-message.bot .ai-message-content {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(191, 0, 255, 0.15));
+            color: white;
+            border-bottom-left-radius: 3px;
+            margin-right: 15px;
         }
         
-        .bot-message .message-time {
-            text-align: left;
-        }
-        
-        .chat-input-container {
+        .ai-input-area {
             display: flex;
             padding: 15px;
             border-top: 1px solid rgba(0, 240, 255, 0.3);
-            gap: 10px;
+            gap: 8px;
         }
         
-        #chatInput {
+        #aiInput {
             flex: 1;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 25px;
-            padding: 12px 16px;
+            border-radius: 20px;
+            padding: 10px 15px;
             color: white;
-            font-size: clamp(0.85rem, 2.5vw, 0.9rem);
+            font-size: 0.85rem;
             outline: none;
             transition: all 0.3s ease;
         }
         
-        #chatInput::placeholder {
+        #aiInput::placeholder {
             color: rgba(255, 255, 255, 0.5);
         }
         
-        #chatInput:focus {
+        #aiInput:focus {
             border-color: var(--neon-blue);
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
         }
         
-        #sendButton {
+        #aiSendBtn {
             background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
             border: none;
             border-radius: 50%;
-            width: 45px;
-            height: 45px;
+            width: 38px;
+            height: 38px;
             color: white;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -1189,33 +1487,42 @@
             justify-content: center;
         }
         
-        #sendButton:hover {
+        #aiSendBtn:hover {
             transform: scale(1.1);
             box-shadow: 0 5px 15px rgba(0, 240, 255, 0.4);
         }
         
-        .chat-suggestions {
+        .ai-quick-questions {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
             padding: 0 15px 15px;
         }
         
-        .suggestion-btn {
-            background: rgba(255, 255, 255, 0.1);
+        .quick-btn {
+            background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 15px;
-            padding: 8px 12px;
+            border-radius: 12px;
+            padding: 6px 10px;
             color: white;
-            font-size: clamp(0.7rem, 2vw, 0.8rem);
+            font-size: 0.7rem;
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
         }
         
-        .suggestion-btn:hover {
+        .quick-btn:hover {
             background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
-            transform: translateY(-2px);
+            transform: translateY(-1px);
+        }
+        
+        /* Minimized state */
+        .ai-widget.minimized .ai-content {
+            display: none;
+        }
+        
+        .ai-widget.minimized {
+            max-height: 70px;
         }
         
         .typing-indicator {
@@ -1591,40 +1898,38 @@
     <div class="hypnotic-bg"></div>
     <div class="matrix-rain" id="matrixRain"></div>
     
-    <!-- AI Chatbot -->
-    <div class="ai-chat-container" id="aiChatContainer">
-        <div class="chat-header">
-            <div class="chat-avatar">🤖</div>
-            <div class="chat-info">
-                <div class="chat-name">Assistente IA do Cleber</div>
-                <div class="chat-status">Online • Pergunte qualquer coisa!</div>
+    <!-- AI Assistant Widget - Always Visible -->
+    <div class="ai-widget" id="aiWidget">
+        <div class="ai-widget-header">
+            <div class="ai-avatar">🤖</div>
+            <div class="ai-info">
+                <div class="ai-name">Assistente IA</div>
+                <div class="ai-status">• Online</div>
             </div>
-            <button class="chat-close" onclick="toggleChat()">✕</button>
+            <button class="ai-minimize" onclick="minimizeAI()" title="Minimizar">−</button>
         </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="message bot-message">
-                <div class="message-content">
-                    👋 Olá! Sou o assistente virtual do Cleber Mantuano. Posso responder qualquer pergunta sobre ele, suas habilidades, experiência ou como entrar em contato. O que gostaria de saber?
+        <div class="ai-content" id="aiContent">
+            <div class="ai-welcome">
+                <div class="welcome-text">
+                    👋 <strong>Olá! Sou o assistente do Cleber.</strong><br>
+                    Pergunte qualquer coisa sobre suas habilidades, experiência ou contatos!
                 </div>
-                <div class="message-time">Agora</div>
             </div>
-        </div>
-        <div class="chat-input-container">
-            <input type="text" id="chatInput" placeholder="Digite sua pergunta..." onkeypress="handleChatKeyPress(event)">
-            <button id="sendButton" onclick="sendMessage()">📤</button>
-        </div>
-        <div class="chat-suggestions">
-            <button class="suggestion-btn" onclick="sendSuggestion('Quais são as principais habilidades do Cleber?')">🎯 Habilidades</button>
-            <button class="suggestion-btn" onclick="sendSuggestion('Como posso entrar em contato?')">📞 Contato</button>
-            <button class="suggestion-btn" onclick="sendSuggestion('Qual é a experiência dele?')">💼 Experiência</button>
+            <div class="ai-messages" id="aiMessages"></div>
+            <div class="ai-input-area">
+                <input type="text" id="aiInput" placeholder="Pergunte sobre o Cleber..." onkeypress="handleAIKeyPress(event)">
+                <button id="aiSendBtn" onclick="sendAIMessage()">📤</button>
+            </div>
+            <div class="ai-quick-questions">
+                <button class="quick-btn" onclick="askQuestion('habilidades')">🎯 Habilidades</button>
+                <button class="quick-btn" onclick="askQuestion('contato')">📞 Contato</button>
+                <button class="quick-btn" onclick="askQuestion('experiencia')">💼 Experiência</button>
+            </div>
         </div>
     </div>
 
     <!-- Floating Action Buttons -->
     <div class="floating-actions">
-        <button class="floating-btn chat-btn" onclick="toggleChat()" title="Conversar com IA">
-            🤖
-        </button>
         <button class="floating-btn whatsapp-btn" onclick="window.open('https://wa.me/5521994945474', '_blank')" title="WhatsApp Direto!">
             📱
         </button>
@@ -1658,66 +1963,104 @@
     </header>
 
     <main>
-        <!-- HERO SECTION -->
+        <!-- HERO SECTION - REDESIGNED -->
         <section id="home" class="hero">
             <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1>PROFISSIONAL EXPERIENTE E QUALIFICADO</h1>
-                        <div class="hero-subtitle">✨ DISPONÍVEL PARA TRABALHAR EM BÚZIOS! ✨</div>
-                        <p class="hero-description">
-                            <strong>Profissional dedicado e confiável!</strong> Com mais de 15 anos de experiência em diferentes áreas, 
-                            estou pronto para contribuir com o crescimento da sua empresa e entregar bons resultados.
-                        </p>
-                        
-                        <div class="cta-section">
-                            <div class="cta-buttons">
-                                <a href="https://wa.me/5521994945474" class="mega-btn btn-primary" target="_blank">
-                                    📱 ENTRAR EM CONTATO
-                                </a>
-                                <a href="http://www.conexaobuzios.com/eu" class="mega-btn btn-secondary" target="_blank">
-                                    🌐 VER PORTFÓLIO
-                                </a>
-                            </div>
-                            <div class="urgency-text">
-                                ⚡ PROFISSIONAL QUALIFICADO E DISPONÍVEL PARA TRABALHAR! ⚡
-                            </div>
+                <!-- Professional Header -->
+                <div class="professional-header">
+                    <div class="profile-image-container">
+                        <div class="profile-main-image">👨‍💼</div>
+                        <div class="status-indicator">
+                            <span class="status-dot"></span>
+                            DISPONÍVEL
                         </div>
                     </div>
-                    
-                    <div class="profile-section">
-                        <div class="mega-glass profile-card">
-                            <div class="profile-avatar">👨‍💼</div>
-                            <h2 class="profile-name">CLEBER MANTUANO</h2>
-                            <div class="profile-title">🎯 PROFISSIONAL MULTIFUNCIONAL 🎯</div>
-                            <div class="location-badge">
-                                📍 BÚZIOS - RJ (VEÍCULO PRÓPRIO)
-                            </div>
-                            <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; line-height: 1.6; font-weight: 600;">
-                                Profissional experiente com conhecimento em várias áreas, sempre buscando aprender e contribuir.
-                                <br><br>
-                                <span style="color: var(--neon-green); font-weight: 800;">✅ DISPONÍVEL PARA COMEÇAR!</span>
-                            </p>
-                            
-                            <div class="stats-grid">
-                                <div class="stat-item">
-                                    <div class="stat-number">15+</div>
-                                    <div class="stat-label">ANOS DE EXPERIÊNCIA</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">6</div>
-                                    <div class="stat-label">ÁREAS DE ATUAÇÃO</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">100%</div>
-                                    <div class="stat-label">COMPROMETIMENTO</div>
-                                </div>
-                                <div class="stat-item">
-                                    <div class="stat-number">24/7</div>
-                                    <div class="stat-label">DISPONIBILIDADE</div>
-                                </div>
-                            </div>
+                    <div class="professional-info">
+                        <h1 class="professional-name">CLEBER MANTUANO</h1>
+                        <div class="professional-role">PROFISSIONAL MULTIFUNCIONAL</div>
+                        <div class="location-info">
+                            <span class="location-icon">📍</span>
+                            <span>Búzios - RJ</span>
+                            <span class="separator">•</span>
+                            <span class="vehicle-info">🚗 Veículo Próprio</span>
                         </div>
+                    </div>
+                </div>
+                
+                <!-- Main Description -->
+                <div class="hero-main-content">
+                    <div class="hero-intro">
+                        <h2 class="hero-tagline">Experiência Sólida, Resultados Comprovados</h2>
+                        <p class="hero-description">
+                            Profissional dedicado com <strong>15+ anos de experiência</strong> em múltiplas áreas. 
+                            Especialista em controle de estoque, atendimento ao cliente, vendas, marketing digital e suporte técnico. 
+                            <strong>Comprometido em contribuir para o crescimento da sua empresa.</strong>
+                        </p>
+                    </div>
+                    
+                    <!-- Key Stats -->
+                    <div class="hero-stats">
+                        <div class="stat-box">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Anos<br>Experiência</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">6</div>
+                            <div class="stat-label">Áreas de<br>Atuação</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Dedicação<br>Total</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">⚡</div>
+                            <div class="stat-label">Disponível<br>Agora</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Key Skills Preview -->
+                <div class="skills-preview">
+                    <h3 class="skills-preview-title">🎯 Principais Competências</h3>
+                    <div class="skills-list">
+                        <div class="skill-tag">📦 Controle de Estoque</div>
+                        <div class="skill-tag">👥 Atendimento ao Cliente</div>
+                        <div class="skill-tag">💰 Vendas & Negociação</div>
+                        <div class="skill-tag">🚀 Marketing Digital</div>
+                        <div class="skill-tag">⚡ Suporte Técnico</div>
+                        <div class="skill-tag">🏖️ Expert Local Búzios</div>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="hero-actions">
+                    <div class="primary-actions">
+                        <a href="https://wa.me/5521994945474" class="action-btn primary" target="_blank">
+                            <span class="btn-icon">📱</span>
+                            <span class="btn-text">Entrar em Contato</span>
+                            <span class="btn-subtitle">WhatsApp - Resposta Rápida</span>
+                        </a>
+                        <a href="http://www.conexaobuzios.com/eu" class="action-btn secondary" target="_blank">
+                            <span class="btn-icon">🌐</span>
+                            <span class="btn-text">Ver Portfólio</span>
+                            <span class="btn-subtitle">Trabalhos Realizados</span>
+                        </a>
+                    </div>
+                    <div class="contact-options">
+                        <a href="mailto:cleberluiz.profissional@gmail.com" class="contact-link">
+                            📧 cleberluiz.profissional@gmail.com
+                        </a>
+                        <a href="https://instagram.com/conexao.buzios" class="contact-link" target="_blank">
+                            📷 @conexao.buzios
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Availability Notice -->
+                <div class="availability-notice">
+                    <div class="notice-content">
+                        <span class="notice-icon">✅</span>
+                        <span class="notice-text">Profissional qualificado disponível para começar imediatamente</span>
                     </div>
                 </div>
             </div>
@@ -2343,12 +2686,12 @@
             }
         }
         
-        // AI Chatbot Functionality
+        // AI Widget Functionality
         const GEMINI_API_KEY = 'AIzaSyBlOiC0sqSE-CjJ4wDBIj34DKit1NgoAV4';
-        const chatContainer = document.getElementById('aiChatContainer');
-        const chatMessages = document.getElementById('chatMessages');
-        const chatInput = document.getElementById('chatInput');
-        let isChatOpen = false;
+        const aiWidget = document.getElementById('aiWidget');
+        const aiMessages = document.getElementById('aiMessages');
+        const aiInput = document.getElementById('aiInput');
+        let isMinimized = false;
         
         // Cleber's context for AI responses
         const cleberContext = `
@@ -2385,20 +2728,13 @@
         Se perguntarem sobre outras coisas não relacionadas ao Cleber, gentilmente redirecione para suas qualificações.
         `;
         
-        function toggleChat() {
-            isChatOpen = !isChatOpen;
-            if (isChatOpen) {
-                chatContainer.style.display = 'flex';
-                setTimeout(() => {
-                    chatContainer.classList.add('active');
-                }, 10);
-                chatInput.focus();
-            } else {
-                chatContainer.classList.remove('active');
-                setTimeout(() => {
-                    chatContainer.style.display = 'none';
-                }, 300);
-            }
+        function minimizeAI() {
+            isMinimized = !isMinimized;
+            aiWidget.classList.toggle('minimized');
+            
+            const minimizeBtn = document.querySelector('.ai-minimize');
+            minimizeBtn.innerHTML = isMinimized ? '+' : '−';
+            minimizeBtn.title = isMinimized ? 'Expandir' : 'Minimizar';
         }
         
         function formatMessage(text) {
@@ -2410,39 +2746,34 @@
                 .replace(/•/g, '•');
         }
         
-        function addMessage(content, isUser = false) {
+        function addAIMessage(content, isUser = false) {
             const message = document.createElement('div');
-            message.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-            
-            const now = new Date();
-            const time = now.toLocaleTimeString('pt-BR', { 
-                hour: '2-digit', 
-                minute: '2-digit' 
-            });
+            message.className = `ai-message ${isUser ? 'user' : 'bot'}`;
             
             const formattedContent = isUser ? content : formatMessage(content);
             
             message.innerHTML = `
-                <div class="message-content">${formattedContent}</div>
-                <div class="message-time">${time}</div>
+                <div class="ai-message-content">${formattedContent}</div>
             `;
             
-            chatMessages.appendChild(message);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            aiMessages.appendChild(message);
+            aiMessages.scrollTop = aiMessages.scrollHeight;
         }
         
         function showTypingIndicator() {
             const typingDiv = document.createElement('div');
-            typingDiv.className = 'message bot-message typing-message';
+            typingDiv.className = 'ai-message bot typing-message';
             typingDiv.innerHTML = `
-                <div class="typing-indicator">
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
+                <div class="ai-message-content">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
                 </div>
             `;
-            chatMessages.appendChild(typingDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            aiMessages.appendChild(typingDiv);
+            aiMessages.scrollTop = aiMessages.scrollHeight;
             return typingDiv;
         }
         
@@ -2572,13 +2903,13 @@ Responda em português, máximo 3 linhas, amigável e profissional, focando no C
             return smartResponse;
         }
         
-        async function sendMessage() {
-            const message = chatInput.value.trim();
+        async function sendAIMessage() {
+            const message = aiInput.value.trim();
             if (!message) return;
             
             // Add user message
-            addMessage(message, true);
-            chatInput.value = '';
+            addAIMessage(message, true);
+            aiInput.value = '';
             
             // Show typing indicator
             const typingIndicator = showTypingIndicator();
@@ -2590,31 +2921,33 @@ Responda em português, máximo 3 linhas, amigável e profissional, focando no C
             typingIndicator.remove();
             
             // Add bot response
-            addMessage(response);
+            addAIMessage(response);
         }
         
-        function sendSuggestion(suggestion) {
-            chatInput.value = suggestion;
-            sendMessage();
+        function askQuestion(type) {
+            const questions = {
+                'habilidades': 'Quais são as principais habilidades do Cleber?',
+                'contato': 'Como posso entrar em contato com o Cleber?',
+                'experiencia': 'Qual é a experiência profissional do Cleber?'
+            };
+            
+            const question = questions[type];
+            if (question) {
+                aiInput.value = question;
+                sendAIMessage();
+            }
         }
         
-        function handleChatKeyPress(event) {
+        function handleAIKeyPress(event) {
             if (event.key === 'Enter') {
-                sendMessage();
+                sendAIMessage();
             }
         }
         
-        // Auto-open chat hint
+        // Auto-greet after widget loads
         setTimeout(() => {
-            if (!isChatOpen) {
-                const chatBtn = document.querySelector('.chat-btn');
-                chatBtn.style.animation = 'chatPulse 1s ease-in-out infinite, bounce 2s ease-in-out infinite';
-                
-                setTimeout(() => {
-                    chatBtn.style.animation = 'chatPulse 2s ease-in-out infinite';
-                }, 6000);
-            }
-        }, 8000);
+            addAIMessage('👋 Olá! Estou aqui para responder qualquer pergunta sobre o Cleber Mantuano. O que gostaria de saber?');
+        }, 3000);
 
         // Final Initialization
         console.log('🚀 PORTFÓLIO CLEBER MANTUANO - CARREGADO COM SUCESSO! 🚀');
