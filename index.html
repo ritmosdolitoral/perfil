@@ -196,7 +196,7 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 30px;
+            padding: 0 clamp(15px, 3vw, 40px);
             width: 100%;
             box-sizing: border-box;
         }
@@ -274,8 +274,16 @@
         .hero-content {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
-            gap: 80px;
+            gap: clamp(30px, 6vw, 80px);
             align-items: center;
+        }
+        
+        @media (max-width: 1200px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: clamp(40px, 5vw, 60px);
+                text-align: center;
+            }
         }
         
         .hero-text h1 {
@@ -433,21 +441,21 @@
         }
         
         .profile-card {
-            padding: 50px;
+            padding: clamp(25px, 5vw, 50px);
             text-align: center;
             position: relative;
         }
         
         .profile-avatar {
-            width: 250px;
-            height: 250px;
-            margin: 0 auto 40px;
+            width: clamp(150px, 20vw, 250px);
+            height: clamp(150px, 20vw, 250px);
+            margin: 0 auto clamp(20px, 4vw, 40px);
             background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 6rem;
+            font-size: clamp(3rem, 6vw, 6rem);
             position: relative;
             animation: avatarFloat 4s ease-in-out infinite;
         }
@@ -568,12 +576,12 @@
         
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 40vw, 350px), 1fr));
+            gap: clamp(20px, 4vw, 40px);
         }
         
         .skill-card {
-            padding: 40px;
+            padding: clamp(20px, 4vw, 40px);
             text-align: center;
             position: relative;
             transform: translate3d(0, 50px, 0);
@@ -625,17 +633,17 @@
         }
         
         .skill-title {
-            font-size: 1.8rem;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
             font-weight: 800;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: clamp(15px, 3vw, 20px);
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
         
         .skill-description {
             color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
         }
         
         /* SEÇÃO DE EXPERIÊNCIA - TIMELINE FUTURÍSTICA */
@@ -770,13 +778,13 @@
         
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 35vw, 300px), 1fr));
+            gap: clamp(20px, 4vw, 40px);
+            margin-bottom: clamp(40px, 8vw, 80px);
         }
         
         .contact-card {
-            padding: 50px;
+            padding: clamp(25px, 5vw, 50px);
             text-align: center;
             position: relative;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -911,24 +919,24 @@
         /* Floating Action Buttons */
         .floating-actions {
             position: fixed;
-            right: 30px;
+            right: clamp(10px, 3vw, 30px);
             top: 50%;
             transform: translateY(-50%);
             z-index: 999;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: clamp(12px, 2.5vw, 20px);
         }
         
         .floating-btn {
-            width: 70px;
-            height: 70px;
+            width: clamp(50px, 8vw, 70px);
+            height: clamp(50px, 8vw, 70px);
             border-radius: 50%;
             border: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
             color: white;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -1273,257 +1281,100 @@
             transform: scale(1.1);
         }
 
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 60px;
-                text-align: center;
-            }
-            
-            .hero-text h1 {
-                font-size: 3.5rem;
-            }
-            
+        /* Timeline responsive adjustments */
+        .timeline::before {
+            left: clamp(20px, 3vw, 50%);
+        }
+        
+        .timeline-item::before {
+            left: clamp(20px, 3vw, 50%);
+        }
+        
+        .timeline-content {
+            width: clamp(calc(100% - 60px), 90%, calc(100% - 80px));
+            margin-left: clamp(60px, 8vw, 80px) !important;
+            text-align: left !important;
+        }
+        
+        @media (min-width: 1000px) {
             .timeline::before {
-                left: 30px;
+                left: 50%;
             }
             
             .timeline-item::before {
-                left: 30px;
+                left: 50%;
             }
             
             .timeline-content {
-                width: calc(100% - 80px);
-                margin-left: 80px !important;
-                text-align: left !important;
+                width: 45%;
+                margin-left: auto !important;
             }
             
-            .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 30px;
-            }
-            
-            .contact-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 30px;
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-right: auto !important;
+                text-align: right !important;
             }
         }
         
-        @media (max-width: 1024px) {
-            .container {
-                padding: 0 20px;
-            }
-            
-            .hero-text h1 {
-                font-size: 3rem;
-            }
-            
-            .section-title {
-                font-size: 3.2rem;
-            }
-            
-            .profile-avatar {
-                width: 200px;
-                height: 200px;
-                font-size: 5rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 15px;
-            }
-            
-            .skill-icon {
-                width: 100px;
-                height: 100px;
-                font-size: 3rem;
-            }
-        }
+                 /* Improved grid responsiveness */
+         .stats-grid {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(clamp(120px, 20vw, 200px), 1fr));
+             gap: clamp(15px, 3vw, 20px);
+             margin-top: clamp(20px, 4vw, 30px);
+         }
+         
+         .skill-icon {
+             width: clamp(80px, 12vw, 120px);
+             height: clamp(80px, 12vw, 120px);
+             margin: 0 auto clamp(20px, 4vw, 30px);
+             font-size: clamp(2.5rem, 5vw, 3.5rem);
+         }
         
-        @media (max-width: 768px) {
-            body {
-                cursor: auto;
-            }
-            
-            .custom-cursor, .cursor-trail {
-                display: none !important;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            .logo {
-                font-size: 2rem;
-            }
-            
-            .hero {
-                padding-top: 100px;
-                min-height: auto;
-                padding-bottom: 50px;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.2rem;
-                line-height: 1.2;
-                margin-bottom: 20px;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-                margin-bottom: 20px;
-                white-space: normal;
-                border-right: none;
-            }
-            
-            .hero-description {
-                font-size: 1.1rem;
-                margin-bottom: 30px;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-                margin-bottom: 50px;
-            }
-            
-            .contact-title {
-                font-size: 2.5rem;
-            }
-            
-            .floating-actions {
-                right: 10px;
-                gap: 15px;
-            }
-            
-            .floating-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.3rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-            }
-            
-            .mega-btn {
-                width: 100%;
-                max-width: 320px;
-                justify-content: center;
-                padding: 18px 30px;
-                font-size: 1.1rem;
-            }
-            
-            .profile-card {
-                padding: 30px 20px;
-            }
-            
-            .profile-avatar {
-                width: 150px;
-                height: 150px;
-                font-size: 4rem;
-                margin-bottom: 25px;
-            }
-            
-            .profile-name {
-                font-size: 2.2rem;
-                margin-bottom: 10px;
-            }
-            
-            .profile-title {
-                font-size: 1.2rem;
-                margin-bottom: 20px;
-            }
-            
-            .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .skill-card {
-                padding: 30px 20px;
-            }
-            
-            .skill-icon {
-                width: 80px;
-                height: 80px;
-                font-size: 2.5rem;
-                margin-bottom: 20px;
-            }
-            
-            .skill-title {
-                font-size: 1.5rem;
-                margin-bottom: 15px;
-            }
-            
-            .skill-description {
-                font-size: 1rem;
-            }
-            
-            .timeline-content {
-                padding: 25px 20px;
-            }
-            
-            .timeline-job {
-                font-size: 1.5rem;
-            }
-            
-            .timeline-company {
-                font-size: 1.1rem;
-            }
-            
-            .contact-card {
-                padding: 30px 20px;
-            }
-            
-            .contact-icon {
-                width: 80px;
-                height: 80px;
-                font-size: 2.5rem;
-                margin-bottom: 20px;
-            }
-            
-            .contact-label {
-                font-size: 1.3rem;
-                margin-bottom: 10px;
-            }
-            
-            .contact-info {
-                font-size: 1.1rem;
-            }
-            
-            .final-cta {
-                padding: 40px 20px;
-            }
-            
-            .final-title {
-                font-size: 2.5rem;
-                margin-bottom: 20px;
-            }
-            
-            .final-description {
-                font-size: 1.2rem;
-                margin-bottom: 30px;
-            }
-            
-            .availability-badge {
-                font-size: 1.1rem;
-                padding: 15px 25px;
-                margin-bottom: 30px;
-            }
-            
-            .final-buttons {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-                         /* Fix overflow issues */
+                 @media (max-width: 768px) {
+             body {
+                 cursor: auto;
+             }
+             
+             .custom-cursor, .cursor-trail {
+                 display: none !important;
+             }
+             
+             .nav-links {
+                 display: none;
+             }
+             
+             .mobile-menu-toggle {
+                 display: block;
+             }
+             
+             .hero-subtitle {
+                 white-space: normal;
+                 border-right: none;
+             }
+             
+             .cta-buttons {
+                 flex-direction: column;
+                 align-items: center;
+                 gap: clamp(15px, 4vw, 20px);
+             }
+             
+             .mega-btn {
+                 width: 100%;
+                 max-width: clamp(280px, 80vw, 320px);
+                 justify-content: center;
+             }
+             
+             .skills-grid {
+                 grid-template-columns: 1fr;
+             }
+             
+             .final-buttons {
+                 flex-direction: column;
+                 gap: clamp(15px, 4vw, 20px);
+             }
+             
+             /* Fix overflow issues */
              html, body {
                  overflow-x: hidden;
              }
@@ -1532,68 +1383,137 @@
                  max-width: 100%;
              }
              
-             /* Chat responsive adjustments */
+             /* Chat mobile adjustments */
              .ai-chat-container {
-                 bottom: 90px;
-                 right: 10px;
-                 width: clamp(280px, 95vw, 350px);
-                 max-height: clamp(350px, 60vh, 500px);
-             }
-             
-             .chat-messages {
-                 max-height: clamp(200px, 35vh, 300px);
-             }
-             
-             .floating-actions {
-                 right: 10px;
-                 gap: 12px;
-             }
-             
-             .suggestion-btn {
-                 font-size: clamp(0.65rem, 1.8vw, 0.75rem);
-                 padding: 6px 10px;
+                 bottom: clamp(80px, 15vw, 90px);
+                 right: clamp(5px, 2vw, 10px);
+                 left: clamp(5px, 2vw, 10px);
+                 width: auto;
              }
          }
         
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            .hero-text h1 {
-                font-size: 1.8rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .contact-title {
-                font-size: 2rem;
-            }
-            
-            .mega-btn {
-                padding: 15px 25px;
-                font-size: 1rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
-            }
-            
-            .final-title {
-                font-size: 2rem;
-            }
-            
-            .final-description {
-                font-size: 1.1rem;
-            }
-        }
+                 @media (max-width: 480px) {
+             .container {
+                 padding: 0 clamp(10px, 3vw, 15px);
+             }
+             
+             .hero-text h1 {
+                 font-size: clamp(1.5rem, 5vw, 1.8rem);
+             }
+             
+             .section-title {
+                 font-size: clamp(1.5rem, 4.5vw, 1.8rem);
+             }
+             
+             .contact-title {
+                 font-size: clamp(1.7rem, 5vw, 2rem);
+             }
+             
+             .mega-btn {
+                 padding: clamp(12px, 3vw, 15px) clamp(20px, 5vw, 25px);
+                 font-size: clamp(0.9rem, 2.5vw, 1rem);
+             }
+             
+             .stats-grid {
+                 grid-template-columns: 1fr;
+                 gap: clamp(10px, 3vw, 15px);
+             }
+             
+             .stat-number {
+                 font-size: clamp(1.5rem, 4vw, 2rem);
+             }
+             
+             .final-title {
+                 font-size: clamp(1.7rem, 4.5vw, 2rem);
+             }
+             
+             .final-description {
+                 font-size: clamp(1rem, 2.5vw, 1.1rem);
+             }
+             
+             /* Chat optimizations for small screens */
+             .ai-chat-container {
+                 bottom: 80px;
+                 right: 5px;
+                 left: 5px;
+                 width: auto;
+                 max-height: clamp(300px, 55vh, 450px);
+             }
+             
+             .chat-suggestions {
+                 flex-direction: column;
+                 gap: 6px;
+             }
+             
+             .suggestion-btn {
+                 width: 100%;
+                 text-align: center;
+             }
+         }
+         
+         /* Zoom Level Adaptations */
+         @media (min-resolution: 2dppx) {
+             /* High DPI / Retina displays */
+             .logo {
+                 font-size: clamp(1.8rem, 4vw, 2.5rem);
+             }
+             
+             .nav-links a {
+                 font-size: clamp(0.9rem, 2vw, 1.1rem);
+             }
+         }
+         
+         /* Browser zoom adaptations */
+         @supports (zoom: 1) {
+             /* Browsers that support zoom property */
+             .container {
+                 max-width: min(1400px, 95vw);
+             }
+             
+             .mega-glass {
+                 padding: clamp(20px, 4vw, 50px);
+             }
+         }
+         
+         /* Large screens (4K, ultrawide) */
+         @media (min-width: 1921px) {
+             .container {
+                 max-width: 1600px;
+             }
+             
+             .hero-text h1 {
+                 font-size: clamp(4.5rem, 5vw, 6rem);
+             }
+             
+             .section-title {
+                 font-size: clamp(4rem, 4.5vw, 5rem);
+             }
+         }
+         
+         /* Ultra-small screens (smart watches, etc.) */
+         @media (max-width: 320px) {
+             .hero-text h1 {
+                 font-size: clamp(1.2rem, 6vw, 1.5rem);
+             }
+             
+             .hero-subtitle {
+                 font-size: clamp(0.9rem, 4vw, 1.1rem);
+                 white-space: normal;
+                 border-right: none;
+             }
+             
+             .floating-actions {
+                 flex-direction: column;
+                 gap: 8px;
+                 right: 5px;
+             }
+             
+             .floating-btn {
+                 width: 40px;
+                 height: 40px;
+                 font-size: 1rem;
+             }
+         }
         
         /* Loading Animation */
         .loading-screen {
@@ -2411,9 +2331,231 @@
             }
         }
         
+        // AI Chatbot Functionality
+        const GEMINI_API_KEY = 'AIzaSyBlOiC0sqSE-CjJ4wDBIj34DKit1NgoAV4';
+        const chatContainer = document.getElementById('aiChatContainer');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        let isChatOpen = false;
+        
+        // Cleber's context for AI responses
+        const cleberContext = `
+        Você é um assistente virtual do Cleber Mantuano, um profissional qualificado de Búzios-RJ. 
+        
+        INFORMAÇÕES SOBRE CLEBER:
+        - Nome: Cleber Mantuano
+        - Localização: Búzios, RJ (tem veículo próprio)
+        - Experiência: 15+ anos em múltiplas áreas
+        - Status: Disponível para trabalhar
+        
+        PRINCIPAIS HABILIDADES:
+        - Controle de Estoque: Organização, logística, atenção aos detalhes
+        - Atendimento ao Cliente: Vendas, relacionamento, resolução de problemas
+        - Vendas e Negociação: Prospecção, fechamento, metas
+        - Marketing Digital: Sites, redes sociais, campanhas online
+        - Suporte Técnico: Fibra óptica, equipamentos, soluções práticas
+        - Conhecimento Local: Búzios, turismo, network regional
+        
+        EXPERIÊNCIA PROFISSIONAL:
+        - 2023-atual: Empreendedor Digital (Conexão Búzios) - Sites e marketing digital
+        - 2025: Especialista em Estoque (Arcturo Búzios) - Controle e organização
+        - 2024-2025: Técnico Fibra Óptica - Instalações e manutenção
+        - 2020-2021: Consultor Marketing Digital (AKT) - Campanhas e WordPress
+        - 2018-2019: Gerente Geral (Bar 24h RJ) - Liderança e gestão
+        
+        CONTATOS:
+        - WhatsApp: (21) 99494-5474
+        - Email: cleberluiz.profissional@gmail.com
+        - Portfólio: www.conexaobuzios.com/eu
+        - Instagram: @conexao.buzios
+        
+        RESPONDA sempre de forma amigável, profissional e útil. Seja conciso mas informativo. 
+        Se perguntarem sobre outras coisas não relacionadas ao Cleber, gentilmente redirecione para suas qualificações.
+        `;
+        
+        function toggleChat() {
+            isChatOpen = !isChatOpen;
+            if (isChatOpen) {
+                chatContainer.style.display = 'flex';
+                setTimeout(() => {
+                    chatContainer.classList.add('active');
+                }, 10);
+                chatInput.focus();
+            } else {
+                chatContainer.classList.remove('active');
+                setTimeout(() => {
+                    chatContainer.style.display = 'none';
+                }, 300);
+            }
+        }
+        
+        function addMessage(content, isUser = false) {
+            const message = document.createElement('div');
+            message.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            
+            const now = new Date();
+            const time = now.toLocaleTimeString('pt-BR', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+            
+            message.innerHTML = `
+                <div class="message-content">${content}</div>
+                <div class="message-time">${time}</div>
+            `;
+            
+            chatMessages.appendChild(message);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot-message typing-message';
+            typingDiv.innerHTML = `
+                <div class="typing-indicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return typingDiv;
+        }
+        
+        // Fallback responses if Gemini fails
+        const fallbackResponses = {
+            habilidades: "Cleber tem experiência em: 🎯 Controle de Estoque, 👥 Atendimento ao Cliente, 💰 Vendas e Negociação, 🚀 Marketing Digital, ⚡ Suporte Técnico e 🏖️ Conhecimento Local de Búzios. Tem 15+ anos de experiência!",
+            contato: "Você pode falar com o Cleber: 📱 WhatsApp: (21) 99494-5474 | 📧 Email: cleberluiz.profissional@gmail.com | 🌐 Portfólio: www.conexaobuzios.com/eu | 📷 Instagram: @conexao.buzios",
+            experiencia: "Experiência do Cleber: 🔸 2023-atual: Empreendedor Digital (Conexão Búzios) 🔸 2025: Especialista em Estoque (Arcturo) 🔸 2024-2025: Técnico Fibra Óptica 🔸 2020-2021: Consultor Marketing Digital 🔸 2018-2019: Gerente Geral",
+            disponibilidade: "Sim! Cleber está disponível para trabalhar. Ele mora em Búzios-RJ, tem veículo próprio e está buscando novas oportunidades profissionais. Entre em contato pelo WhatsApp (21) 99494-5474!",
+            estoque: "Cleber tem excelente experiência em controle de estoque! Trabalhou na Arcturo em 2025, onde foi responsável pela organização, controle e otimização de processos. Tem atenção aos detalhes e foco na eficiência.",
+            vendas: "Sim! Cleber tem experiência sólida em vendas e negociação. Sabe prospectar, negociar e fechar vendas. Está comprometido em ajudar empresas a atingir suas metas de vendas.",
+            digital: "Cleber conhece bem marketing digital! Tem seu próprio negócio (Conexão Búzios) criando sites, identidade visual e campanhas. Já trabalhou com Google Ads, Facebook Ads e WordPress.",
+            buzios: "Cleber mora em Búzios-RJ e conhece muito bem a região! Tem network local sólido e entende o turismo da área. Isso é uma vantagem para empresas locais.",
+            saudacao: "Olá! 👋 Sou o assistente do Cleber Mantuano. Ele é um profissional experiente de Búzios-RJ com 15+ anos de experiência. Posso te contar sobre suas habilidades, experiência ou como entrar em contato. O que gostaria de saber?"
+        };
+        
+        function getSmartResponse(userMessage) {
+            const msg = userMessage.toLowerCase();
+            
+            if (msg.includes('habilidade') || msg.includes('competência') || msg.includes('sabe fazer')) {
+                return fallbackResponses.habilidades;
+            } else if (msg.includes('contato') || msg.includes('telefone') || msg.includes('whatsapp') || msg.includes('email')) {
+                return fallbackResponses.contato;
+            } else if (msg.includes('experiência') || msg.includes('trabalhou') || msg.includes('emprego') || msg.includes('carreira')) {
+                return fallbackResponses.experiencia;
+            } else if (msg.includes('disponível') || msg.includes('livre') || msg.includes('trabalhar')) {
+                return fallbackResponses.disponibilidade;
+            } else if (msg.includes('estoque') || msg.includes('organização') || msg.includes('depósito')) {
+                return fallbackResponses.estoque;
+            } else if (msg.includes('venda') || msg.includes('vendedor') || msg.includes('negociação')) {
+                return fallbackResponses.vendas;
+            } else if (msg.includes('digital') || msg.includes('site') || msg.includes('marketing') || msg.includes('online')) {
+                return fallbackResponses.digital;
+            } else if (msg.includes('búzios') || msg.includes('buzios') || msg.includes('local') || msg.includes('região')) {
+                return fallbackResponses.buzios;
+            } else if (msg.includes('oi') || msg.includes('olá') || msg.includes('ola') || msg.includes('hey')) {
+                return fallbackResponses.saudacao;
+            } else {
+                return `Interessante pergunta! Sobre o Cleber posso te contar que ele é um profissional completo de Búzios-RJ com 15+ anos de experiência. Tem conhecimento em estoque, atendimento, vendas, marketing digital e técnico. Está disponível para trabalhar! 
+                
+🔹 Quer saber sobre suas habilidades específicas?
+🔹 Precisa dos contatos dele?
+🔹 Quer conhecer sua experiência profissional?
+
+WhatsApp: (21) 99494-5474 📱`;
+            }
+        }
+        
+        async function sendToGemini(userMessage) {
+            try {
+                // First try Gemini API
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `${cleberContext}\n\nUsuário perguntou: "${userMessage}"\n\nResponda de forma amigável, útil e profissional em português. Mantenha foco no Cleber e suas qualificações. Seja conversacional mas informativo.`
+                            }]
+                        }],
+                        generationConfig: {
+                            temperature: 0.7,
+                            maxOutputTokens: 200
+                        }
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0]) {
+                    return data.candidates[0].content.parts[0].text;
+                } else {
+                    throw new Error('Resposta inválida da API');
+                }
+                
+            } catch (error) {
+                console.error('Erro na API Gemini, usando resposta inteligente:', error);
+                // Use smart fallback response
+                return getSmartResponse(userMessage);
+            }
+        }
+        
+        async function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, true);
+            chatInput.value = '';
+            
+            // Show typing indicator
+            const typingIndicator = showTypingIndicator();
+            
+            // Get AI response
+            const response = await sendToGemini(message);
+            
+            // Remove typing indicator
+            typingIndicator.remove();
+            
+            // Add bot response
+            addMessage(response);
+        }
+        
+        function sendSuggestion(suggestion) {
+            chatInput.value = suggestion;
+            sendMessage();
+        }
+        
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        // Auto-open chat hint
+        setTimeout(() => {
+            if (!isChatOpen) {
+                const chatBtn = document.querySelector('.chat-btn');
+                chatBtn.style.animation = 'chatPulse 1s ease-in-out infinite, bounce 2s ease-in-out infinite';
+                
+                setTimeout(() => {
+                    chatBtn.style.animation = 'chatPulse 2s ease-in-out infinite';
+                }, 6000);
+            }
+        }, 8000);
+
         // Final Initialization
         console.log('🚀 PORTFÓLIO CLEBER MANTUANO - CARREGADO COM SUCESSO! 🚀');
         console.log('💼 Desenvolvido com tecnologia de ponta para impressionar!');
+        console.log('🤖 IA Conversacional ativada com Gemini API!');
         console.log('📱 WhatsApp: (21) 99494-5474');
         console.log('🌐 Portfólio: www.conexaobuzios.com/eu');
         
